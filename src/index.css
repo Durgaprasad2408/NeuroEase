@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #0ea5e9;
+  --background-light: #ffffff;
+  --background-dark: #1f2937;
+  --text-light: #374151;
+  --text-dark: #f3f4f6;
+}
+
+body {
+  @apply bg-white dark:bg-neutral-850 text-gray-700 dark:text-gray-200;
+  margin: 0;
+  font-family: 'Inter var', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.journal-editor {
+  @apply w-full h-[60vh] p-6 bg-white dark:bg-neutral-850 rounded-lg border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  resize: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.mood-button {
+  @apply px-4 py-2 rounded-full transition-all duration-200 ease-in-out;
+}

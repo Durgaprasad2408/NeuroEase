@@ -161,7 +161,7 @@ export default function Auth() {
             </form>
           </div>
         ) : (
-          <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+          <div className="h-screen bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold text-primary-600 dark:text-primary-400">Create Account</h2>
               <p className="mt-2 text-gray-600 dark:text-gray-300">Join NeuroEase today</p>

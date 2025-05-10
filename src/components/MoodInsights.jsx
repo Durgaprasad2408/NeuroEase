@@ -29,20 +29,23 @@ const moodValues = {
 }
 
 export default function MoodInsights({ entries }) {
+  // Create a copy and reverse it to maintain the original array
+  const chronologicalEntries = [...entries].reverse()
+  
   const data = {
-    labels: entries.map((entry) =>
+    labels: chronologicalEntries.map((entry) =>
       new Date(entry.created_at).toLocaleDateString()
     ),
     datasets: [
       {
         label: 'Mood Before',
-        data: entries.map((entry) => moodValues[entry.mood_before] || 0),
+        data: chronologicalEntries.map((entry) => moodValues[entry.mood_before] || 0),
         borderColor: 'rgb(14, 165, 233)',
         backgroundColor: 'rgba(14, 165, 233, 0.5)',
       },
       {
         label: 'Mood After',
-        data: entries.map((entry) => moodValues[entry.mood_after] || 0),
+        data: chronologicalEntries.map((entry) => moodValues[entry.mood_after] || 0),
         borderColor: 'rgb(34, 197, 94)',
         backgroundColor: 'rgba(34, 197, 94, 0.5)',
       },
@@ -75,6 +78,14 @@ export default function MoodInsights({ entries }) {
         backgroundColor: 'rgba(17, 24, 39, 0.8)',
         titleColor: 'rgb(243, 244, 246)',
         bodyColor: 'rgb(243, 244, 246)',
+        callbacks: {
+          label: function(context) {
+            const entry = chronologicalEntries[context.dataIndex];
+            const mood = context.dataset.label === 'Mood Before' ? entry.mood_before : entry.mood_after;
+            const time = new Date(entry.created_at).toLocaleTimeString();
+            return `${context.dataset.label}: ${mood} (${time})`;
+          }
+        }
       }
     },
     scales: {
